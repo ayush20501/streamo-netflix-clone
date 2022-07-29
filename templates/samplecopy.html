@@ -1,0 +1,358 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Streamo Movies & TV shows</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plyr.css' %}">
+    <link rel="stylesheet" href="{% static 'css/photoswipe.css' %}">
+    <link rel="stylesheet" href="{% static 'css/default-skin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .card-img-top {
+            width: 100%;
+            height: 20vw;
+            object-fit: fill;
+        }
+
+        .embed-responsive .card-img-top {
+            object-fit: cover;
+        }
+
+        .fdi-type {
+            font-size: .9em;
+            line-height: 1em;
+            padding: 2px 4px;
+            border: 1px solid #aaa;
+            border-radius: 3px;
+        }
+
+        .float-right {
+            float: right !important;
+        }
+
+        .content__head {
+            background-color: #1E272D;
+
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .content__head:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            display: block;
+            background-image: linear-gradient(90deg, black 0%, black 100%);
+            box-shadow: 0 0 20px 0 black;
+        }
+
+        .content__tabs a:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            display: block;
+            background-image: linear-gradient(90deg, red 0%, red 100%);
+            box-shadow: none;
+            transition: 0.4s ease;
+        }
+
+        .card__category a {
+            font-size: 14px;
+            position: relative;
+            background-image: -webkit-linear-gradient(0deg, red 0%, red 100%);
+
+            -webkit-text-fill-color: transparent;
+            color: red;
+            margin-right: 8px;
+            opacity: 0.8;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        a {
+            transition: 0.4s ease;
+        }
+
+        .card__cover:before {
+            content: '';
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(90deg, red 0%, red 100%);
+            z-index: 2;
+            opacity: 0;
+            transition: 0.4s ease;
+        }
+
+        .footer {
+            display: flex;
+            flex-flow: row wrap;
+            padding: 30px;
+            color: #fff;
+            background-color: #1E272D;
+        }
+
+        .footer>* {
+            flex: 1 100%;
+        }
+
+
+        .b-footer {
+            text-align: center;
+            color: #999;
+            padding-top: 50px;
+        }
+
+        .fa:hover {
+            opacity: 0.7;
+        }
+
+        /* Set a specific color for each brand */
+
+        /* Facebook */
+        .fa-instagram {
+            color: white;
+            font-size: 30px;
+        }
+
+        .fa-linkedin {
+            color: white;
+            font-size: 30px;
+        }
+
+        .fa-github {
+            color: white;
+            font-size: 30px;
+        }
+
+        .button1 {
+            margin-right: 16px;
+        }
+
+        .footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            display: block;
+            background-image: linear-gradient(90deg, black 0%, black 100%);
+            box-shadow: 0 0 20px 0 black;
+        }
+    </style>
+</head>
+
+<body style="background-color: black;">
+    <div class="main-wrapper">
+        <header class="header-area bg-black section-padding-lr">
+            <div class="container-fluid">
+                <div class="header-wrap header-netflix-style">
+                    <div class="logo-menu-wrap">
+                        <div class="logo">
+                            <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" alt=""></a>
+                        </div>
+                        <div class="main-menu main-theme-color-four">
+                            <nav class="main-navigation">
+                                <ul>
+                                    <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                                    <li><a href="{% url 'sample' %}">Movies & TV Series </a>
+
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="right-side d-flex">
+                        <span style="color: white;">Welcome! {{request.user.first_name}}
+                            {{request.user.last_name}}</span>
+
+                        <div class="mobile-menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <section class="content">
+        <div class="content__head">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- content title -->
+                        <h2 class="content__title">Movies & TV Series</h2>
+                        <!-- end content title -->
+
+                        <!-- content tabs nav -->
+                        <ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab"
+                                    aria-controls="tab-1" aria-selected="true">MOVIES</a>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
+                                    aria-selected="false">TV SERIES</a>
+                            </li>
+                        </ul>
+                        <!-- end content tabs nav -->
+
+                        <!-- content mobile tabs nav -->
+                        <div class="content__mobile-tabs" id="content__mobile-tabs">
+                            <div class="content__mobile-tabs-btn dropdown-toggle" role="navigation" id="mobile-tabs"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <input type="button" value="New items">
+                                <span></span>
+                            </div>
+
+                            <div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item"><a class="nav-link active" id="1-tab" data-toggle="tab"
+                                            href="#tab-1" role="tab" aria-controls="tab-1"
+                                            aria-selected="true">MOVIES</a></li>
+
+                                    <li class="nav-item"><a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2"
+                                            role="tab" aria-controls="tab-2" aria-selected="false">TV SERIES</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end content mobile tabs nav -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- content tabs -->
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+                    <div class="row row--grid">
+                        <!-- card -->
+                        {% for i in movies%}
+                        <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                            <div class="card">
+                                <a href="/moviedetail/?i={{i.name}}" class="card__cover">
+                                    <img src="{{i.image}}" alt="">
+                                    <span class="card__play">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path
+                                                d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <div class="card__content">
+                                    <h3 class="card__title"><a href="#">{{i.name}}</a></h3>
+                                    <span class="card__category">
+                                        <a href="#">Action</a>
+                                        <a href="#">Triler</a>
+                                    </span>
+                                    <span class="card__rate">{{i.rating}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+
+                <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
+                    <div class="row row--grid">
+                        <!-- card -->
+                        
+                        {% for i in series %}
+                        <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                            <div class="card">
+                                <a href="/seriesdetail/?i={{i.name}}" class="card__cover">
+                                    <img src="{{i.image}}" alt="">
+                                    <span class="card__play">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path
+                                                d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <div class="card__content">
+                                    <h3 class="card__title"><a href="#">{{i.name}}</a></h3>
+                                    <span class="card__category">
+                                        <a href="#">Action</a>
+                                        <a href="#">Triler</a>
+                                    </span>
+                                    <span class="card__rate">{{i.rating}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="b-footer">
+            <p>
+            <div class="social-footer-icons">
+                <a class="button1" href="https://www.linkedin.com/in/ayushhguptaa/"><i class="fa fa-linkedin"
+                        aria-hidden="true"></i></a>
+                <a class="button1" href="https://www.instagram.com/ayushh__guptaa/"><i class="fa fa-instagram"
+                        aria-hidden="true"></i></a>
+                <a class="button1" href="https://github.com/ayush20501"><i class="fa fa-github"
+                        aria-hidden="true"></i></a>
+            </div>
+            <br>
+            2022 © All Rights Reserved | Designed by Ayush Gupta <br>
+            Contact: ayush20501.ag@gmail.com
+            </p>
+        </div>
+    </footer>
+
+
+    <script src="{% static 'assets/js/vendor/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-migrate-3.3.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins.js' %}"></script>
+    <script src="{% static 'assets/js/ajax-mail.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.mousewheel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.mCustomScrollbar.min.js' %}"></script>
+    <script src="{% static 'js/wNumb.js' %}"></script>
+    <script src="{% static 'js/nouislider.min.js' %}"></script>
+    <script src="{% static 'js/plyr.min.js' %}"></script>
+    <script src="{% static 'js/jquery.morelines.min.js' %}"></script>
+    <script src="{% static 'js/photoswipe.min.js' %}"></script>
+    <script src="{% static 'js/photoswipe-ui-default.min.js' %}"></script>
+    <script src="{% static 'js/main1.js' %}"></script>
+</body>
+
+</html>

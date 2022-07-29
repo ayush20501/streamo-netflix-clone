@@ -1,0 +1,458 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Streamo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .card-img-top {
+            width: 100%;
+            height: 20vw;
+            object-fit: fill;
+        }
+
+        .embed-responsive .card-img-top {
+            object-fit: cover;
+        }
+
+        .fdi-type {
+            font-size: .9em;
+            line-height: 1em;
+            padding: 2px 4px;
+            border: 1px solid #aaa;
+            border-radius: 3px;
+        }
+
+        .float-right {
+            float: right !important;
+        }
+
+        .footer {
+            display: flex;
+            flex-flow: row wrap;
+            padding: 30px;
+            color: #fff;
+            background-color: #1E272D;
+        }
+
+        .footer>* {
+            flex: 1 100%;
+        }
+
+
+        .b-footer {
+            text-align: center;
+            color: #999;
+            padding-top: 50px;
+        }
+
+        .fa:hover {
+            opacity: 0.7;
+        }
+
+        /* Set a specific color for each brand */
+
+        /* Facebook */
+        .fa-instagram {
+            color: white;
+            font-size: 30px;
+        }
+
+        .fa-linkedin {
+            color: white;
+            font-size: 30px;
+        }
+
+        .fa-github {
+            color: white;
+            font-size: 30px;
+        }
+
+        .button1 {
+            margin-right: 16px;
+        }
+    </style>
+</head>
+
+<body style="background-color: black;">
+    <div class="main-wrapper">
+        <header class="header-area bg-black section-padding-lr">
+            <div class="container-fluid">
+                <div class="header-wrap header-netflix-style">
+                    <div class="logo-menu-wrap">
+                        <div class="logo">
+                            <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" alt=""></a>
+                        </div>
+                        <div class="main-menu main-theme-color-four">
+                            <nav class="main-navigation">
+                                <ul>
+                                    <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                                    <li><a href="{% url 'sample' %}">Movies & TV Series </a>
+
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="right-side d-flex">
+                        <div class="our-profile-area ">
+                            <!-- <img src="{% static 'assets/images/review/author-01.png' %}" alt=""> -->
+                            <a href="#" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <img src="{% static 'logo1.png' %}" alt="">
+                            </a>
+                            <div class="dropdown-menu netflix-profile-style red">
+                                <ul>
+                                    <li class="single-list">{{request.user.first_name}}
+                                        {{request.user.last_name}}</li>
+                                    <li class="single-list"><a href="{% url 'changepassword' %}">ChangePassword</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="subscribe-btn-wrap">
+                            <a href="{% url 'logout' %}"><button type="button" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" class="subscribe-btn">Log Out</button></a>
+                        </div>
+                        <div class="mobile-menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="slider-area bg-black">
+            <div class="container-fluid p-0">
+                <div class="hero-slider-four dot-style-1 nav-style-1">
+                    {% for i in display%}
+                    <div class="single-hero-slider-wrap single-animation-wrap slider-height-hm4 bg-image-hm4 slider-bg-color-black d-flex align-items-center slider-bg-position-1 bg-black"
+                        style="background-image:url('{{i.imageurl}}');">
+                        <div class="slider-content-hm4  slider-animated">
+                            <h1 class="title animated" style="color: white;">{{i.name}}</h1>
+                            <div class="sub-title-time-wrap">
+                                <div class="sub-title animated" style="font-size: 25px; color: white;">{{i.rating}}
+                                </div><br>
+                                <span class="sub-title animated"
+                                    style="font-size: 25px; color: white;">{{i.runtime}}</span>
+                            </div>
+                            <div class="sub-title-time-wrap">
+                                <div class="sub-title animated" style="font-size: 20px;"><span
+                                        style="color: white;">{{i.seasons}}</span></div><br>
+                                <div class="sub-title animated" style="font-size: 20px;"><span
+                                        style="color: white;">Genre: {{i.genre}}</span></div><br>
+                                <div class="sub-title animated" style="font-size: 20px;"><span
+                                        style="color: white;">Quality: {{i.quality}}</span></div>
+                            </div>
+                            <span class="slider-button">
+                                <a href="{% url 'watchepisode' episodelink=i.trailer %}"
+                                    class="btn-style-hm4 animated">Watch
+                                    Trailer</a>
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="movie-list section-padding-lr section-pt-50 bg-black">
+            <div class="container-fluid">
+                <div class="section-title-4 st-border-bottom">
+                    <h2 style="font-family:monospace; font-weight:300px;">RECENTLY ADDED</h2>
+                </div>
+                <div class="movie-slider-active nav-style-2">
+                    {% for i in recently %}
+                    <div class="movie-wrap-plr">
+                        <div class="movie-wrap text-center">
+                            <div class="movie-img">
+                                {% if i.movieorseries == "movie" %}
+                                <img src="{{i.image}}" alt="">
+
+                                {% else %}
+                                <img src="{{i.image}}" alt="">
+
+                                {% endif %}
+                            </div>
+                            <div class="movie-content">
+                                <h3 class="title">{{i.name}}</h3>
+                                <span>Quality : {{i.quality}}</span>
+                                <div class="movie-btn">
+                                    {% if i.movieorseries == "movie" %}
+                                    <a href="/moviedetail/?i={{i.name}}" class="btn-style-hm4-2 animated">Watch
+                                        Now</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">Movie</span>
+                                    {% else %}
+                                    <a href="/seriesdetail/?i={{i.name}}" class="btn-style-hm4-2 animated">Watch
+                                        Now</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">TV</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="series-list section-padding-lr section-pt-50 bg-black">
+            <div class="container-fluid">
+                <div class="section-title-4 st-border-bottom">
+                    <h2 style="font-family:monospace; font-weight:300px;">TRENDING MOVIES</h2>
+                </div>
+                <div class="movie-slider-active nav-style-2">
+                    {% for i in trendingmovies %}
+                    <div class="movie-wrap-plr">
+                        <div class="movie-wrap text-center">
+                            <div class="movie-img">
+                                {% if i.movieorseries == "movie" %}
+                                <img src="{{i.image}}" alt="">
+                                {% else %}
+                                <img src="{{i.image}}" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="movie-content">
+                                <h3 class="title">{{i.name}}</h3>
+                                <span>Quality : {{i.quality}}</span>
+                                <div class="movie-btn">
+                                    {% if i.movieorseries == "movie" %}
+                                    <a href="/moviedetail/?i={{i.name}}" class="btn-style-hm4-2 animated">Watch
+                                        Now</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">Movie</span>
+                                    {% else %}
+                                    <a href="/seriesdetail/?i={{i.name}}" class="btn-style-hm4-2 animated">Watch
+                                        Now</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">TV</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="movie-list section-padding-lr section-ptb-50 bg-black">
+            <div class="container-fluid">
+                <div class="section-title-4 st-border-bottom">
+                    <h2 style="font-family:monospace; font-weight:300px;">NEW MOVIES RELEASES</h2>
+                </div>
+                <div class="movie-slider-active nav-style-2">
+                    {% for i in newmovies %}
+                    <div class="movie-wrap-plr">
+                        <div class="movie-wrap text-center">
+                            <div class="movie-img">
+                                {% if i.movieorseries == "movie" %}
+                                <img src="{{i.image}}" alt="">
+                                {% else %}
+                                <img src="{{i.image}}" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="movie-content">
+                                <h3 class="title">{{i.name}}</h3>
+                                <span>Quality : {{i.quality}}</span>
+                                <div class="movie-btn">
+                                    {% if i.movieorseries == "movie" %}
+                                    <a href="/moviedetail/?i={{i.name}}" class="btn-style-hm4-2 animated">Watch
+                                        Now</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">Movie</span>
+                                    {% else %}
+                                    <a href="/seriesdetail/?i={{i.name}}" class="btn-style-hm4-2 animated">Watch
+                                        Now</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">TV</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="movie-list section-padding-lr section-ptb-50 bg-black">
+            <div class="container-fluid">
+                <div class="section-title-4 st-border-bottom">
+                    <h2 style="font-family:monospace; font-weight:300px;">Top 10 IN INDIA</h2>
+                </div>
+            </div>
+        </div>
+        <div class="slider-area bg-black">
+            <div class="container-fluid p-0">
+                <div class="hero-slider-four dot-style-1 nav-style-1">
+                    {% for i in topten %}
+                    <div class="single-hero-slider-wrap single-animation-wrap slider-height-hm4 bg-image-hm4 slider-bg-color-black d-flex align-items-center slider-bg-position-1 bg-black"
+                        style="background-image:url('{{i.image}}');">
+                        <div class="slider-content-hm4 slider-animated">
+                            <h2 class="title animated">Top {{i.number}}</h2>
+                            <h4 class="title animated" style="font-weight: 100; font-size: 50px;">{{i.name}}</h4>
+                            <span class="slider-button">
+                                <a href="{% url 'watchepisode' episodelink=i.trailer %}"
+                                    class="btn-style-hm4 animated">Watch
+                                    Trailer</a>
+                            </span>
+                        </div>
+
+
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="movie-list section-padding-lr section-ptb-50 bg-black">
+            <div class="container-fluid">
+                <div class="section-title-4 st-border-bottom">
+                    <h2 style="font-family:monospace; font-weight:300px;">TRENDING TV SHOWS</h2>
+                </div>
+                <div class="movie-slider-active nav-style-2">
+                    {% for i in trendingtvshows %}
+                    <div class="movie-wrap-plr">
+                        <div class="movie-wrap text-center">
+                            <div class="movie-img">
+                                {% if i.movieorseries == "movie" %}
+                                <img src="{{i.image}}" alt="">
+                                {% else %}
+                                <img src="{{i.image}}" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="movie-content">
+                                <h3 class="title">{{i.name}}</h3>
+                                <span>Quality : {{i.quality}}</span>
+                                <div class="movie-btn">
+                                    {% if i.movieorseries == "movie" %}
+                                    <a href="/moviedetail/?i={{i.name}}" class="btn-style-hm4-2 animated">Watch
+                                        Now</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">Movie</span>
+                                    {% else %}
+                                    <a href="/seriesdetail/?i={{i.name}}" class="btn-style-hm4-2 animated">Watch
+                                        Now</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">Tv</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="movie-list section-padding-lr section-ptb-50 bg-black">
+            <div class="container-fluid">
+                <div class="section-title-4 st-border-bottom">
+                    <h2 style="font-family:monospace; font-weight:300px;">NEW TV SHOWS RELEASES</h2>
+                </div>
+                <div class="movie-slider-active nav-style-2">
+                    {% for i in newtvshows %}
+                    <div class="movie-wrap-plr">
+                        <div class="movie-wrap text-center">
+                            <div class="movie-img">
+                                {% if i.movieorseries == "movie" %}
+                                <img src="{{i.image}}" alt="">
+                                {% else %}
+                                <img src="{{i.image}}" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="movie-content">
+                                <h3 class="title">{{i.name}}</h3>
+                                <span>Quality : {{i.quality}}</span>
+                                <div class="movie-btn">
+                                    {% if i.movieorseries == "movie" %}
+                                    <a href="/moviedetail/?i={{i.name}}" class="btn-style-hm4-2 animated">Watch
+                                        Now</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">Movie</span>
+                                    {% else %}
+                                    <a href="/seriesdetail/?i={{i.name}}" class="btn-style-hm4-2 animated">Watch
+                                        Now</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">TV</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="movie-list section-padding-lr section-ptb-50 bg-black">
+            <div class="container-fluid">
+                <div class="section-title-4 st-border-bottom">
+                    <h2 style="font-family:monospace; font-weight:300px;">COMING SOON</h2>
+                </div>
+                <div class="movie-slider-active nav-style-2">
+                    {% for i in comingsoon %}
+                    <div class="movie-wrap-plr">
+                        <div class="movie-wrap text-center">
+                            <div class="movie-img">
+                                <a href="#"><img src="{{i.imageurl}}" alt=""></a>
+                            </div>
+                            <div class="movie-content">
+                                <h3 class="title">{{i.name}}</h3>
+                                <span>{{i.releasedata}}</span>
+                                <div class="movie-btn">
+                                    {% if i.trailer == None and i.type == "movie" %}
+                                    <span class="float-center fdi-type" style="color:white ;">Movie</span>
+                                    {% elif i.trailer == None and i.type == "series" %}
+                                    <span class="float-center fdi-type" style="color:white ;">TV</span>
+                                    {% elif i.trailer != None and i.type == "movie" %}
+                                    <a href="{% url 'watchepisode' episodelink=i.trailer %}"
+                                        class="btn-style-hm4-2 animated">Trailer</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">Movie</span>
+                                    {% else %}
+                                    <a href="{% url 'watchepisode' episodelink=i.trailer %}"
+                                        class="btn-style-hm4-2 animated">Trailer</a><br>
+                                    <span class="float-center fdi-type" style="color:white ;">TV</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="b-footer">
+                <p>
+                <div class="social-footer-icons">
+                    <a class="button1" href="https://www.linkedin.com/in/ayushhguptaa/"><i class="fa fa-linkedin"
+                            aria-hidden="true"></i></a>
+                    <a class="button1" href="https://www.instagram.com/ayushh__guptaa/"><i class="fa fa-instagram"
+                            aria-hidden="true"></i></a>
+                    <a class="button1" href="https://github.com/ayush20501"><i class="fa fa-github"
+                            aria-hidden="true"></i></a>
+                </div>
+                <br>
+                2022 © All Rights Reserved | Designed by Ayush Gupta <br>
+                Contact: ayush20501.ag@gmail.com
+                </p>
+            </div>
+        </footer>
+    </div>
+
+
+</body>
+<script src="{% static 'assets/js/vendor/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery-migrate-3.3.0.min.js' %}"></script>
+<script src="{% static 'assets/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins.js' %}"></script>
+<script src="{% static 'assets/js/ajax-mail.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+</html>
