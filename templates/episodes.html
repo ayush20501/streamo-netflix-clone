@@ -301,6 +301,7 @@
                                                     <li><a href="{% url 'sample' %}">Movies & TV Series </a>
 
                                                     <li><a href="#">Seasons </a>
+                                                        
                                                         <ul class="sub-menu">
                                                             {% for i in category%}
                                                             <li><a href="?i={{i.id}}">{{i.name}}</a></li>
@@ -362,20 +363,10 @@
                     <div class="col-12">
                         <!-- content title -->
                         <h2 class="content__title">Seasons</h2>
-                        <!-- end content title -->
-
-                        <!-- content tabs nav -->
-                        <ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab"
-                                    aria-controls="tab-1" aria-selected="true">{{string}}</a>
-                            </li>
-                        </ul>
-                        <!-- end content tabs nav -->
-
-                        <!-- content mobile tabs nav -->
-                        
+                        <h6 style="color: white;"><i>(Select seasons from navbar)</i></h6>
+                        <h3 style="color: white;">{{string}}</h3>
                     </div>
+                 
                     <!-- end content mobile tabs nav -->
                 </div>
             </div>
