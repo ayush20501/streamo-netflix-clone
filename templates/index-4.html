@@ -120,13 +120,11 @@
                                     <li class="single-list">{{request.user.first_name}}
                                         {{request.user.last_name}}</li>
                                     <li class="single-list"><a href="{% url 'changepassword' %}">ChangePassword</a></li>
+                                    <li class="single-list"><a href="{% url 'logout' %}">Logout</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="subscribe-btn-wrap">
-                            <a href="{% url 'logout' %}"><button type="button" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" class="subscribe-btn">Log Out</button></a>
-                        </div>
+                        
                         <div class="mobile-menu d-block d-lg-none"></div>
                     </div>
                 </div>
@@ -140,20 +138,20 @@
                     <div class="single-hero-slider-wrap single-animation-wrap slider-height-hm4 bg-image-hm4 slider-bg-color-black d-flex align-items-center slider-bg-position-1 bg-black"
                         style="background-image:url('{{i.imageurl}}');">
                         <div class="slider-content-hm4  slider-animated">
-                            <h1 class="title animated" style="color: white;">{{i.name}}</h1>
+                            <h1 class="title animated" style="color: white; font-weight: 100;">{{i.name}}</h1>
                             <div class="sub-title-time-wrap">
-                                <div class="sub-title animated" style="font-size: 25px; color: white;">{{i.rating}}
+                                <div class="sub-title animated" style="font-size: 20px; font-weight: 100; color: white;">{{i.rating}}
                                 </div><br>
                                 <span class="sub-title animated"
-                                    style="font-size: 25px; color: white;">{{i.runtime}}</span>
+                                    style="font-size: 20px; color: white;font-weight: 100;">{{i.runtime}}</span>
                             </div>
                             <div class="sub-title-time-wrap">
                                 <div class="sub-title animated" style="font-size: 20px;"><span
-                                        style="color: white;">{{i.seasons}}</span></div><br>
+                                        style="color: white; font-weight: 100;">{{i.seasons}}</span></div><br>
                                 <div class="sub-title animated" style="font-size: 20px;"><span
-                                        style="color: white;">Genre: {{i.genre}}</span></div><br>
+                                        style="color: white; font-weight: 100;">Genre: {{i.genre}}</span></div><br>
                                 <div class="sub-title animated" style="font-size: 20px;"><span
-                                        style="color: white;">Quality: {{i.quality}}</span></div>
+                                        style="color: white; font-weight: 100;">Quality: {{i.quality}}</span></div>
                             </div>
                             <span class="slider-button">
                                 <a href="{% url 'watchepisode' episodelink=i.trailer %}"
@@ -398,7 +396,7 @@
                     <div class="movie-wrap-plr">
                         <div class="movie-wrap text-center">
                             <div class="movie-img">
-                                <a href="#"><img src="{{i.imageurl}}" alt=""></a>
+                                <img src="{{i.imageurl}}" alt="">
                             </div>
                             <div class="movie-content">
                                 <h3 class="title">{{i.name}}</h3>
