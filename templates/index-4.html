@@ -18,6 +18,12 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         .card-img-top {
             width: 100%;
@@ -85,52 +91,58 @@
         .button1 {
             margin-right: 16px;
         }
+
+        #testing:hover{
+            background-color: black !important;
+            color: red !important;
+        }
+        
     </style>
 </head>
 
 <body style="background-color: black;">
-    <div class="main-wrapper">
-        <header class="header-area bg-black section-padding-lr">
-            <div class="container-fluid">
-                <div class="header-wrap header-netflix-style">
-                    <div class="logo-menu-wrap">
-                        <div class="logo">
-                            <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" alt=""></a>
-                        </div>
-                        <div class="main-menu main-theme-color-four">
-                            <nav class="main-navigation">
-                                <ul>
-                                    <li class="active"><a href="{% url 'home' %}">Home</a></li>
-                                    <li><a href="{% url 'sample' %}">Movies & TV Series </a>
 
-                                    <li><a href="{% url 'contact' %}">Contact</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="right-side d-flex">
-                        <div class="our-profile-area ">
-                            <!-- <img src="{% static 'assets/images/review/author-01.png' %}" alt=""> -->
-                            <a href="#" class="our-profile-pc" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <img src="{% static 'logo1.png' %}" alt="">
-                            </a>
-                            <div class="dropdown-menu netflix-profile-style red">
-                                <ul>
-                                    <li class="single-list">{{request.user.first_name}}
-                                        {{request.user.last_name}}</li>
-                                    <li class="single-list"><a href="{% url 'changepassword' %}">ChangePassword</a></li>
-                                    <li class="single-list"><a href="{% url 'logout' %}">Logout</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="mobile-menu d-block d-lg-none"></div>
-                    </div>
-                </div>
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card py-3" id="myNavbar">
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-wide" id="testing1"><img src="{% static 'logo.png' %}"
+                    alt=""></a>
+            <!-- Right-sided navbar links -->
+            <div class="w3-right w3-hide-small">
+                <span class="w3-bar-item w3-button" id="testing">{{request.user.first_name}}
+                    {{request.user.last_name}} | </span>
+                <a href="{% url 'home' %}" class="w3-bar-item w3-button" id="testing">Home</a>
+                <a href="{% url 'sample' %}" class="w3-bar-item w3-button" id="testing">Movies and TV Series</a>
+                <a href="{% url 'contact' %}" class="w3-bar-item w3-button" id="testing">Contact</a>
+                <a href="{% url 'changepassword' %}" class="w3-bar-item w3-button" id="testing">ChangePassword</a>
+                <a href="{% url 'logout' %}" class="w3-bar-item w3-button" id="testing">LogOut</a>
+
             </div>
-        </header>
+            <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                onclick="w3_open()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+        style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close
+            ×</a>
+        <span onclick="w3_close()" class="w3-bar-item w3-button">{{request.user.first_name}}
+            {{request.user.last_name}}</span>
+        <a href="{% url 'home' %}" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+        <a href="{% url 'sample' %}" onclick="w3_close()" class="w3-bar-item w3-button">Movies and TV Series</a>
+        <a href="{% url 'contact' %}" onclick="w3_close()" class="w3-bar-item w3-button">Contact</a>
+        <a href="{% url 'changepassword' %}" onclick="w3_close()" class="w3-bar-item w3-button">ChangePassword</a>
+        <a href="{% url 'logout' %}" onclick="w3_close()" class="w3-bar-item w3-button">LogOut</a>
+
+
+    </nav>
+    <br>
+    <br>
+    <br>
+    <div class="main-wrapper">
         <div class="slider-area bg-black">
             <div class="container-fluid p-0">
                 <div class="hero-slider-four dot-style-1 nav-style-1">
@@ -140,7 +152,8 @@
                         <div class="slider-content-hm4  slider-animated">
                             <h1 class="title animated" style="color: white; font-weight: 100;">{{i.name}}</h1>
                             <div class="sub-title-time-wrap">
-                                <div class="sub-title animated" style="font-size: 20px; font-weight: 100; color: white;">{{i.rating}}
+                                <div class="sub-title animated"
+                                    style="font-size: 20px; font-weight: 100; color: white;">{{i.rating}}
                                 </div><br>
                                 <span class="sub-title animated"
                                     style="font-size: 20px; color: white;font-weight: 100;">{{i.runtime}}</span>
@@ -452,5 +465,28 @@
 <script src="{% static 'assets/js/plugins.js' %}"></script>
 <script src="{% static 'assets/js/ajax-mail.js' %}"></script>
 <script src="{% static 'assets/js/main.js' %}"></script>
+<script>
+    // Modal Image Gallery
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+    }
+    // Toggle between showing and hiding the sidebar when clicking the menu icon
+    var mySidebar = document.getElementById("mySidebar");
+
+    function w3_open() {
+        if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+        } else {
+            mySidebar.style.display = 'block';
+        }
+    }
+    // Close the sidebar with the close button
+    function w3_close() {
+        mySidebar.style.display = "none";
+    }
+</script>
 
 </html>
