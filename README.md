@@ -5,6 +5,7 @@ This is a clone of the popular video streaming site Netflix built using Django. 
 Project is created with-
 1. Django
 2. Bootstrap
+3. Heroku
 
 [Live App](streamo-netflix-clone.herokuapp.com)
 
