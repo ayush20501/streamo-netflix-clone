@@ -1,4 +1,4 @@
-### STREAMO (NETFLIX CLONE)
+### STREAMO
 
 ***
 This is a clone of the popular video streaming site Netflix built using Django. Anyone can stream their movies and tv shows in this app.
