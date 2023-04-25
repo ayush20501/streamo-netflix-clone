@@ -7,7 +7,7 @@ Project is created with-
 2. Bootstrap
 3. Heroku
 
-[Live App](https://streamo.pythonanywhere.com/)
+[Live App](https://rebrand.ly/streamo)
 
 ![Screenshot (243)](https://user-images.githubusercontent.com/77526719/181888666-0566e6c7-7c68-4fbc-8892-a3a2235ada82.png)
 ![Screenshot (244)](https://user-images.githubusercontent.com/77526719/181889567-f8c7402c-6892-41ce-8702-20131c326995.png)
